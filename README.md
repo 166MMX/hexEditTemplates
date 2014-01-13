@@ -1,4 +1,4 @@
 hexEditTemplates
 ================
 
-HexEdit Templates
+[HexEdit](http://www.hexedit.com/) Templates
