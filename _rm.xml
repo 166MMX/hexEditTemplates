@@ -1,0 +1,243 @@
+<?xml version="1.0"?><!DOCTYPE binary_file_format SYSTEM "BinaryFileFormat.dtd">
+<binary_file_format name="Default"
+					type_name=""
+					comment=""
+					default_byte_order="big"
+					default_read_only="false"
+					default_char_set="ansi"
+					expr="">
+	<define_struct type_name="chunk_header">
+		<data type="string" name="type" format="default" len="4" />
+		<data type="int" name="size" format="unsigned" len="4" />
+		<data type="int" name="version" format="unsigned" len="2" />
+	</define_struct>
+	<define_struct type_name="realmedia_file_header">
+		<use_struct name="chunk_header" type_name="chunk_header" />
+		<data type="int" name="file_version" format="unsigned" len="4" />
+		<data type="int" name="header_count" format="unsigned" len="4" />
+	</define_struct>
+	<define_struct type_name="file_flags">
+		<data type="int" name="savable" direction="up" len="2" display="bin" bits="1" />
+		<data type="int" name="perfect_play" direction="up" len="2" display="bin" bits="1" />
+		<data type="int" name="live_broadcast" direction="up" len="2" display="bin" bits="1" />
+	</define_struct>
+	<define_struct type_name="file_property_header">
+		<use_struct name="chunk_header" type_name="chunk_header" />
+		<data type="int" name="max_bit_rate" format="unsigned" len="4" />
+		<data type="int" name="avg_bit_rate" format="unsigned" len="4" />
+		<data type="int" name="max_data_packet_size" format="unsigned" len="4" />
+		<data type="int" name="avg_data_packet_size" format="unsigned" len="4" />
+		<data type="int" name="data_packet_count" format="unsigned" len="4" />
+		<data type="int" name="duration" format="unsigned" len="4" />
+		<data type="int" name="pre_buffer" format="unsigned" len="4" />
+		<data type="int" name="first_index_chunk_offset" format="unsigned" len="4" />
+		<data type="int" name="first_data_chunk_offset" format="unsigned" len="4" />
+		<data type="int" name="stream_count" format="unsigned" len="2" />
+		<use_struct name="flags" type_name="file_flags" />
+	</define_struct>
+	<define_struct type_name="audio_mime_type_header">
+		<data type="string" name="signature" format="default" len="4" display="" />
+		<data type="int" name="version" format="unsigned" len="2" />
+		<switch test="version">
+			<case range="3">
+				<struct name="audio_v3_header">
+					<data type="int" name="size" format="unsigned" len="2" />
+					<data type="none" name="unknown" len="10" />
+					<data type="int" name="data_size" format="unsigned" len="4" />
+					<data type="int" name="title_length" format="unsigned" len="1" />
+					<data type="string" name="title" format="default" len="title_length" />
+					<data type="int" name="author_length" format="unsigned" len="1" />
+					<data type="string" name="author" format="default" len="author_length" />
+					<data type="int" name="copyright_length" format="unsigned" len="1" />
+					<data type="string" name="copyright" format="default" len="copyright_length" />
+					<data type="int" name="comment_length" format="unsigned" len="1" />
+					<data type="string" name="comment" format="default" len="comment_length" />
+					<data type="none" name="unknown" len="1" />
+					<data type="int" name="fourcc_length" format="unsigned" len="1" />
+					<data type="string" name="fourcc" format="default" len="fourcc_length" />
+				</struct>
+			</case>
+			<case range="4">
+				<struct name="audio_v4_header">
+					<data type="none" name="unused" len="2" />
+					<data type="string" name="ra_signature" format="default" len="4" />
+					<data type="none" name="unknown" len="4" />
+					<data type="int" name="version2" format="unsigned" len="2" />
+					<data type="int" name="header_size" format="unsigned" len="4" />
+					<data type="int" name="codec_flavor" format="unsigned" len="2" />
+					<data type="int" name="coded_frame_size" format="unsigned" len="4" />
+					<data type="none" name="unknown" len="12" />
+					<data type="int" name="sub_packet_offset" format="unsigned" len="2" />
+					<data type="int" name="frame_size" format="unsigned" len="2" />
+					<data type="int" name="sub_packet_size" format="unsigned" len="2" />
+					<data type="none" name="unknown" len="2" />
+					<data type="int" name="sample_rate" format="unsigned" len="2" />
+					<data type="none" name="unknown" len="2" />
+					<data type="int" name="sample_size" format="unsigned" len="2" />
+					<data type="int" name="channels" format="unsigned" len="2" />
+					<data type="int" name="interleave_id_length" format="unsigned" len="1" />
+					<data type="string" name="interleave_id" format="default" len="interleave_id_length" />
+					<data type="int" name="fourcc_length" format="unsigned" len="1" />
+					<data type="string" name="fourcc" format="default" len="fourcc_length" />
+					<data type="none" name="unknown" len="3" />
+					<data type="int" name="codec_extra_data_length" format="unsigned" len="4" />
+					<data type="string" name="codec_extra_data" format="default" len="codec_extra_data_length" />
+				</struct>
+			</case>
+			<case range="5">
+				<struct name="audio_v5_header" type_name="" comment="" expr="">
+					<data type="none" name="" len="2" />
+					<data type="string" name="ra_signature" format="default" len="4" />
+					<data type="none" name="" len="4" />
+					<data type="int" name="format_version" format="unsigned" len="2" display="" />
+					<data type="int" name="format_revision" format="unsigned" len="2" display="" />
+					<data type="int" name="header_size" format="unsigned" len="2" display="" />
+					<data type="int" name="flavor_index" format="unsigned" len="2" display="" />
+					<data type="int" name="granularity" format="unsigned" len="4" display="" />
+					<data type="int" name="total_bytes" len="4" format="unsigned" display="" />
+					<data type="int" name="bytes_per_minute" format="signed" len="4" display="" />
+					<data type="int" name="bytes_per_minute_2" len="4" format="unsigned" display="" />
+					<data type="int" name="interleave_factor" format="unsigned" len="2" display="" />
+					<data type="int" name="interleave_block_size" format="unsigned" len="2" display="" />
+					<data type="int" name="codec_frame_size" format="unsigned" len="2" display="" />
+					<data type="int" name="user_data" len="4" format="unsigned" display="" />
+					<data type="int" name="sample_rate" format="unsigned" len="2" display="" />
+					<data type="none" name="" len="2" />
+					<data type="int" name="actual_sample_rate" len="2" format="unsigned" display="" />
+					<data type="none" name="" len="2" />
+					<data type="int" name="sample_size" format="unsigned" len="2" display="" />
+					<data type="int" name="channels" format="unsigned" len="2" display="" />
+					<data type="string" name="interleave_id" format="default" len="4" display="" />
+					<data type="string" name="codec_id" format="default" len="4" display="" />
+					<data type="int" name="interleaved" format="signed" len="1" display="" />
+					<data type="int" name="copy_byte" format="signed" len="1" display="" />
+					<data type="int" name="stream_type" format="signed" len="1" display="" />
+					<data type="int" name="scatter_type" format="signed" len="1" display="" />
+					<data type="int" name="opaque_data_size" format="unsigned" len="4" display="" />
+					<switch test="codec_id" comment="">
+						<case range="cook">
+							<struct name="cook_data">
+								<data type="int" name="version" format="unsigned" len="4" />
+								<data type="int" name="samples_per_frame_per_channel" format="unsigned" len="2" />
+								<data type="int" name="sub_band_count" format="unsigned" len="2" />
+								<data type="none" name="unused" len="4" />
+								<data type="int" name="joint_stereo_sub_band_start" format="unsigned" len="2" />
+								<data type="int" name="joint_stereo_vlc_bits" format="unsigned" len="2" />
+							</struct>
+						</case>
+					</switch>
+				</struct>
+			</case>
+		</switch>
+	</define_struct>
+	<define_struct type_name="media_property_header">
+		<use_struct name="chunk_header" type_name="chunk_header" />
+		<data type="int" name="stream_number" format="unsigned" len="2" />
+		<data type="int" name="max_bit_rate" format="unsigned" len="4" />
+		<data type="int" name="avg_bit_rate" format="unsigned" len="4" />
+		<data type="int" name="max_data_packet_size" format="unsigned" len="4" />
+		<data type="int" name="avg_data_packet_size" format="unsigned" len="4" />
+		<data type="int" name="stream_offset" format="unsigned" len="4" />
+		<data type="int" name="stream_pre_roll" format="unsigned" len="4" />
+		<data type="int" name="stream_duration" format="unsigned" len="4" />
+		<data type="int" name="stream_description_length" format="unsigned" len="1" />
+		<data type="string" name="stream_description" format="default" len="stream_description_length" />
+		<data type="int" name="stream_mime_type_length" format="unsigned" len="1" />
+		<data type="string" name="stream_mime_type" format="default" len="stream_mime_type_length" />
+		<data type="int" name="mime_type_header_size" format="unsigned" len="4" />
+		<use_struct name="audio_mime_type_header" expr="" type_name="audio_mime_type_header" comment="" />
+	</define_struct>
+	<define_struct type_name="content_description_header">
+		<use_struct name="chunk_header" type_name="chunk_header" />
+		<data type="int" name="title_length" format="unsigned" len="2" />
+		<data type="string" name="title" format="default" len="title_length" />
+		<data type="int" name="author_length" format="unsigned" len="2" />
+		<data type="string" name="author" format="default" len="author_length" />
+		<data type="int" name="copyright_length" format="unsigned" len="2" />
+		<data type="string" name="copyright" format="default" len="copyright_length" />
+		<data type="int" name="comment_length" format="unsigned" len="2" />
+		<data type="string" name="comment" format="default" len="comment_length" />
+	</define_struct>
+	<define_struct type_name="data_packet_flags">
+		<data type="int" name="reliable_packet" direction="up" len="1" display="bin" bits="1" />
+		<data type="int" name="key_frame" direction="up" len="1" display="bin" bits="1" />
+	</define_struct>
+	<define_struct type_name="data_header">
+		<data type="int" name="packet_count" format="unsigned" len="4" />
+		<data type="int" name="next_data_offset" format="unsigned" len="4" />
+	</define_struct>
+	<define_struct type_name="data_packet">
+		<data type="int" name="version" format="unsigned" len="2" />
+		<data type="int" name="size" format="unsigned" len="2" />
+		<data type="int" name="stream_number" format="unsigned" len="2" />
+		<data type="int" name="timestamp" format="unsigned" len="4" />
+		<switch test="version">
+			<case range="0">
+				<struct name="packet_v0_data">
+					<data type="int" name="group" format="unsigned" len="1" />
+					<use_struct name="flags" type_name="data_packet_flags" />
+				</struct>
+			</case>
+			<case range="1">
+				<struct name="packet_v1_data">
+					<data type="int" name="asm_rule" format="unsigned" len="2" />
+					<data type="int" name="asm_flags" format="unsigned" len="1" />
+				</struct>
+			</case>
+		</switch>
+		<data type="int" name="payload" format="unsigned" len="1" />
+	</define_struct>
+	<define_struct type_name="data_chunk">
+		<use_struct name="chunk_header" type_name="chunk_header" />
+		<use_struct name="data_header" type_name="data_header" />
+		<data type="none" name="packets" len="chunk_header.size - (sizeof(chunk_header) + sizeof(data_header))" />
+	</define_struct>
+	<define_struct type_name="index_header">
+		<data type="int" name="entry_count" format="unsigned" len="4" />
+		<data type="int" name="stream_number" format="unsigned" len="2" />
+		<data type="int" name="next_index_offset" format="unsigned" len="4" />
+	</define_struct>
+	<define_struct type_name="index_entry">
+		<data type="int" name="version" format="unsigned" len="2" />
+		<data type="int" name="timestamp" format="unsigned" len="4" />
+		<data type="int" name="packet_offset" format="unsigned" len="4" />
+		<data type="int" name="packet_number" format="unsigned" len="4" />
+	</define_struct>
+	<define_struct type_name="index_chunk">
+		<use_struct name="chunk_header" type_name="chunk_header" />
+		<use_struct name="index_header" type_name="index_header" />
+		<for name="entry" count="index_header.entry_count" stop_test="">
+			<use_struct name="entry" type_name="index_entry" />
+		</for>
+	</define_struct>
+	<define_struct type_name="chunk">
+		<jump offset="0" origin="current">
+			<data type="string" name="type" format="default" len="4" />
+		</jump>
+		<switch test="type">
+			<case range=".RMF">
+				<use_struct name="realmedia_file" type_name="realmedia_file_header" />
+			</case>
+			<case range="PROP">
+				<use_struct name="file_property" type_name="file_property_header" />
+			</case>
+			<case range="MDPR">
+				<use_struct name="media_property" type_name="media_property_header" />
+			</case>
+			<case range="CONT">
+				<use_struct name="content_description" type_name="content_description_header" />
+			</case>
+			<case range="DATA">
+				<use_struct name="data_chunk" type_name="data_chunk" />
+			</case>
+			<case range="INDX">
+				<use_struct name="index_chunk" type_name="index_chunk" />
+			</case>
+		</switch>
+	</define_struct>
+	<use_struct name="realmedia_file_header" type_name="realmedia_file_header" />
+	<for name="chunk" count="realmedia_file_header.header_count" stop_test="">
+		<use_struct name="chunk" type_name="chunk" />
+	</for>
+	<data type="none" name="none" />
+</binary_file_format>
