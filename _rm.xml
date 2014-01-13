@@ -36,7 +36,7 @@
 		<use_struct name="flags" type_name="file_flags" />
 	</define_struct>
 	<define_struct type_name="audio_mime_type_header">
-		<data type="string" name="signature" format="default" len="4" display="" />
+		<data type="string" name="signature" format="default" len="4" />
 		<data type="int" name="version" format="unsigned" len="2" />
 		<switch test="version">
 			<case range="3">
@@ -89,38 +89,38 @@
 					<data type="none" name="" len="2" />
 					<data type="string" name="ra_signature" format="default" len="4" />
 					<data type="none" name="" len="4" />
-					<data type="int" name="format_version" format="unsigned" len="2" display="" />
-					<data type="int" name="format_revision" format="unsigned" len="2" display="" />
-					<data type="int" name="header_size" format="unsigned" len="2" display="" />
-					<data type="int" name="flavor_index" format="unsigned" len="2" display="" />
-					<data type="int" name="granularity" format="unsigned" len="4" display="" />
-					<data type="int" name="total_bytes" len="4" format="unsigned" display="" />
-					<data type="int" name="bytes_per_minute" format="signed" len="4" display="" />
-					<data type="int" name="bytes_per_minute_2" len="4" format="unsigned" display="" />
-					<data type="int" name="interleave_factor" format="unsigned" len="2" display="" />
-					<data type="int" name="interleave_block_size" format="unsigned" len="2" display="" />
-					<data type="int" name="codec_frame_size" format="unsigned" len="2" display="" />
-					<data type="int" name="user_data" len="4" format="unsigned" display="" />
-					<data type="int" name="sample_rate" format="unsigned" len="2" display="" />
+					<data type="int" name="format_version" format="unsigned" len="2" />
+					<data type="int" name="format_revision" format="unsigned" len="2" />
+					<data type="int" name="header_size" format="unsigned" len="2" />
+					<data type="int" name="flavor_index" format="unsigned" len="2" />
+					<data type="int" name="granularity" format="unsigned" len="4" />
+					<data type="int" name="total_bytes" format="unsigned" len="4" />
+					<data type="int" name="bytes_per_minute" format="unsigned" len="4" />
+					<data type="int" name="bytes_per_minute_2" format="unsigned" len="4" />
+					<data type="int" name="interleave_factor" format="unsigned" len="2" />
+					<data type="int" name="interleave_block_size" format="unsigned" len="2" />
+					<data type="int" name="codec_frame_size" format="unsigned" len="2" />
+					<data type="int" name="user_data" format="unsigned" len="4" />
+					<data type="int" name="sample_rate" format="unsigned" len="2" />
 					<data type="none" name="" len="2" />
-					<data type="int" name="actual_sample_rate" len="2" format="unsigned" display="" />
+					<data type="int" name="actual_sample_rate" format="unsigned" len="2" />
 					<data type="none" name="" len="2" />
-					<data type="int" name="sample_size" format="unsigned" len="2" display="" />
-					<data type="int" name="channels" format="unsigned" len="2" display="" />
-					<data type="string" name="interleave_id" format="default" len="4" display="" />
-					<data type="string" name="codec_id" format="default" len="4" display="" />
-					<data type="int" name="interleaved" format="signed" len="1" display="" />
-					<data type="int" name="copy_byte" format="signed" len="1" display="" />
-					<data type="int" name="stream_type" format="signed" len="1" display="" />
-					<data type="int" name="scatter_type" format="signed" len="1" display="" />
-					<data type="int" name="opaque_data_size" format="unsigned" len="4" display="" />
+					<data type="int" name="sample_size" format="unsigned" len="2" />
+					<data type="int" name="channels" format="unsigned" len="2" />
+					<data type="string" name="interleave_id" format="default" len="4" />
+					<data type="string" name="codec_id" format="default" len="4" />
+					<data type="int" name="interleaved" format="unsigned" len="1" />
+					<data type="int" name="copy_byte" format="unsigned" len="1" />
+					<data type="int" name="stream_type" format="unsigned" len="1" />
+					<data type="int" name="scatter_type" format="unsigned" len="1" />
+					<data type="int" name="opaque_data_size" format="unsigned" len="4" />
 					<switch test="codec_id" comment="">
 						<case range="cook">
 							<struct name="cook_data">
 								<data type="int" name="version" format="unsigned" len="4" />
 								<data type="int" name="samples_per_frame_per_channel" format="unsigned" len="2" />
 								<data type="int" name="sub_band_count" format="unsigned" len="2" />
-								<data type="none" name="unused" len="4" />
+								<data type="none" name="" len="4" />
 								<data type="int" name="joint_stereo_sub_band_start" format="unsigned" len="2" />
 								<data type="int" name="joint_stereo_vlc_bits" format="unsigned" len="2" />
 							</struct>
